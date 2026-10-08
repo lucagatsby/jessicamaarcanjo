@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Clínica Jéssica Arcanjo">
+  <title>Clínica Jéssica Arcanjo</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f7f4ee;
+      --paper: #fffdf9;
+      --ink: #25352c;
+      --muted: #657067;
+      --green: #47634e;
+      --green-dark: #314a39;
+      --line: #e4e1d8;
+      --accent: #d8c7a5;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "DM Sans", sans-serif;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .wrap {
+      width: min(1120px, 92%);
+      margin: auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(247,244,238,.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(228,225,216,.8);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+      min-height: 78px;
+    }
+
+    .brand {
+      font-family: "Playfair Display", serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      line-height: 1.15;
+    }
+
+    .brand small {
+      display: block;
+      font: 500 .66rem "DM Sans", sans-serif;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 5px;
+    }
+
+    nav {
+      display: flex;
+      gap: 25px;
+      font-size: .9rem;
+      color: #4c5b50;
+    }
+
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      padding: 13px 20px;
+      border-radius: 999px;
+      background: var(--green);
+      color: white;
+      font-weight: 700;
+      border: 1px solid var(--green);
+      transition: .2s;
+    }
+
+    .btn:hover {
+      background: var(--green-dark);
+      transform: translateY(-1px);
+    }
+
+    .btn.outline {
+      background: transparent;
+      color: var(--green);
+    }
+
+    .hero {
+      padding: 70px 0 80px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 55px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      color: var(--green);
+      font-size: .75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .18em;
+    }
+
+    h1, h2, h3 {
+      font-family: "Playfair Display", serif;
+      line-height: 1.13;
+      margin: 0;
+    }
+
+    h1 {
+      font-size: clamp(2.6rem, 5vw, 4.6rem);
+      letter-spacing: -.035em;
+      margin: 18px 0;
+    }
+
+    h1 em {
+      font-weight: 500;
+      color: var(--green);
+    }
+
+    .lead {
+      font-size: 1.08rem;
+      max-width: 510px;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .note {
+      font-size: .8rem;
+      color: var(--muted);
+      margin-top: 20px;
+    }
+
+    .hero-visual {
+      min-height: 470px;
+      border-radius: 48% 48% 18px 18px;
+      overflow: hidden;
+      background: linear-gradient(145deg,#e5dfd1,#c8d1c4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .hero-visual img {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      inset: 0;
+      object-fit: cover;
+    }
+
+    .image-placeholder {
+      text-align: center;
+      padding: 35px;
+      max-width: 300px;
+      color: var(--green-dark);
+    }
+
+    .image-placeholder .sun {
+      font-size: 4.5rem;
+      display: block;
+      margin-bottom: 18px;
+      color: white;
+    }
+
+    .image-placeholder strong {
+      font-family: "Playfair Display", serif;
+      font-size: 1.6rem;
+      display: block;
+    }
+
+    .hero-stamp {
+      position: absolute;
+      bottom: 22px;
+      left: 22px;
+      background: var(--paper);
+      padding: 16px 20px;
+      border-radius: 14px;
+      box-shadow: 0 10px 30px rgba(38,57,45,.08);
+      font-size: .86rem;
+    }
+
+    .hero-stamp strong {
+      display: block;
+      font-family: "Playfair Display", serif;
+      font-size: 1.2rem;
+    }
+
+    section {
+      padding: 78px 0;
+    }
+
+    .section-head {
+      max-width: 650px;
+      margin-bottom: 35px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(2rem, 3.6vw, 3rem);
+      margin: 12px 0;
+    }
+
+    .section-head p {
+      color: var(--muted);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: .85fr 1.15fr;
+      gap: 55px;
+      align-items: center;
+    }
+
+    .about-card {
+      background: #e7e8dd;
+      border-radius: 18px;
+      min-height: 330px;
+      display: grid;
+      place-items: center;
+      padding: 30px;
+      text-align: center;
+    }
+
+    .monogram {
+      width: 145px;
+      height: 145px;
+      border: 1px solid #9ba995;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font: 500 3.4rem "Playfair Display", serif;
+      color: var(--green);
+      margin: auto;
+    }
+
+    .about-card p {
+      max-width: 230px;
+      color: #59685d;
+      font-size: .9rem;
+    }
+
+    .about-copy h2 {
+      font-size: clamp(2rem, 3vw, 2.8rem);
+      margin: 12px 0 18px;
+    }
+
+    .about-copy p {
+      color: var(--muted);
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 18px;
+    }
+
+    .service {
+      background: var(--paper);
+      padding: 27px;
+      border: 1px solid var(--line);
+      border-radius: 17px;
+      min-height: 220px;
+    }
+
+    .service .num {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: #e8ede5;
+      color: var(--green);
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      margin-bottom: 23px;
+    }
+
+    .service h3 {
+      font-size: 1.35rem;
+    }
+
+    .service p {
+      color: var(--muted);
+    }
+
+    .band {
+      background: var(--green-dark);
+      color: white;
+    }
+
+    .band-grid {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .band p {
+      color: #d9e0da;
+      max-width: 650px;
+    }
+
+    .band .btn {
+      background: white;
+      color: var(--green-dark);
+      border-color: white;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 18px;
+    }
+
+    .step {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 17px;
+      padding: 28px;
+    }
+
+    .step span {
+      font-size: .72rem;
+      font-weight: 700;
+      color: var(--green);
+      letter-spacing: .12em;
+    }
+
+    .step h3 {
+      margin: 10px 0;
+      font-size: 1.35rem;
+    }
+
+    .step p {
+      color: var(--muted);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+    }
+
+    .contact-panel {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 30px;
+    }
+
+    .contact-panel h3 {
+      font-size: 1.6rem;
+      margin-bottom: 15px;
+    }
+
+    .contact-item {
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .contact-item small {
+      display: block;
+      color: var(--muted);
+      margin-bottom: 3px;
+    }
+
+    footer {
+      padding: 28px 0;
+      border-top: 1px solid var(--line);
+      font-size: .82rem;
+      color: var(--muted);
+    }
+
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .wa-float {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 20;
+      background: #267b4b;
+      color: white;
+      padding: 14px 18px;
+      border-radius: 999px;
+      font-weight: 700;
+      box-shadow: 0 8px 24px rgba(30,55,39,.18);
+    }
+
+    @media(max-width:800px) {
+      nav {
+        display: none;
+      }
+
+      .hero {
+        padding: 44px 0;
+      }
+
+      .hero-grid,
+      .about-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .hero-visual {
+        min-height: 350px;
+        order: -1;
+      }
+
+      .cards,
+      .steps {
+        grid-template-columns: 1fr;
+      }
+
+      .band-grid {
+        display: block;
+      }
+
+      .band .btn {
+        margin-top: 12px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="wrap nav">
+
+    <a class="brand" href="#inicio">
+      Jéssica Arcanjo
+      <small>Clínica · Cuidado · Bem-estar</small>
+    </a>
+
+    <nav>
+      <a href="#sobre">Sobre</a>
+      <a href="#atendimentos">Atendimentos</a>
+      <a href="#experiencia">Como funciona</a>
+      <a href="#contato">Contato</a>
+    </nav>
+
+    <a class="btn" href="#contato">
+      Agendar atendimento
+    </a>
+
+  </div>
+</header>
+
+<main>
+
+<section class="hero" id="inicio">
+
+  <div class="wrap hero-grid">
+
+    <div>
+
+      <div class="eyebrow">
+        Um cuidado pensado para você
+      </div>
+
+      <h1>
+        Seu momento de cuidado começa <em>aqui.</em>
+      </h1>
+
+      <p class="lead">
+        Um espaço para receber atenção individualizada,
+        esclarecer suas dúvidas e encontrar o atendimento
+        mais adequado para você.
+      </p>
+
+      <div class="hero-actions">
+
+        <a class="btn" href="#contato">
+          Fale com a clínica ↗
+        </a>
+
+        <a class="btn outline" href="#atendimentos">
+          Conheça os atendimentos
+        </a>
+
+      </div>
+
+      <p class="note">
+        Atendimento mediante agendamento.
+        Entre em contato para consultar serviços,
+        horários e disponibilidade.
+      </p>
+
+    </div>
+
+    <div class="hero-visual">
+
+      <!--
+      PARA COLOCAR A FOTO DA JÉSSICA:
+      1. envie a foto para o GitHub
+      2. coloque o nome da foto abaixo.
+      
+      Exemplo:
+      <img src="jessica.jpg" alt="Jéssica Arcanjo">
+      -->
+
+      <div class="image-placeholder">
+
+        <span class="sun">✳</span>
+
+        <strong>
+          Clínica Jéssica Arcanjo
+        </strong>
+
+        <span>
+          Seu cuidado, com atenção aos detalhes.
+        </span>
+
+      </div>
+
+      <div class="hero-stamp">
+        <strong>
+          Olá, seja bem-vinda(o)!
+        </strong>
+
+        Vamos conversar sobre seu atendimento.
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section id="sobre" style="background:#fffdf9">
+
+  <div class="wrap about-grid">
+
+    <div class="about-card">
+
+      <div>
+
+        <div class="monogram">
+          JA
+        </div>
+
+        <p>
+          Uma apresentação acolhedora começa
+          com uma história real.
+        </p>
+
+      </div>
+
+    </div>
+
+    <div class="about-copy">
+
+      <div class="eyebrow">
+        Conheça a profissional
+      </div>
+
+      <h2>
+        Cuidado próximo,
+        atendimento individualizado.
+      </h2>
+
+      <p>
+        Na Clínica Jéssica Arcanjo,
+        cada pessoa merece ser ouvida e receber
+        informações claras antes de escolher um atendimento.
+      </p>
+
+      <p>
+        Este espaço apresenta a trajetória da Jéssica,
+        sua formação, experiência e a forma como acolhe
+        cada paciente.
+      </p>
+
+      <a class="btn" href="#contato">
+        Entre em contato
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section id="atendimentos">
+
+  <div class="wrap">
+
+    <div class="section-head">
+
+      <div class="eyebrow">
+        Como podemos ajudar
+      </div>
+
+      <h2>
+        Conheça nossos atendimentos
+      </h2>
+
+      <p>
+        Conheça os serviços disponíveis na Clínica
+        Jéssica Arcanjo e entre em contato para
+        saber mais.
+      </p>
+
+    </div>
+
+
+    <div class="cards">
+
+      <article class="service">
+
+        <div class="num">
+          01
+        </div>
+
+        <h3>
+          Atendimento 01
+        </h3>
+
+        <p>
+          Descreva aqui o primeiro procedimento
+          ou serviço oferecido pela clínica.
+        </p>
+
+        <a href="#contato">
+          Saiba mais ↗
+        </a>
+
+      </article>
+
+
+      <article class="service">
+
+        <div class="num">
+          02
+        </div>
+
+        <h3>
+          Atendimento 02
+        </h3>
+
+        <p>
+          Descreva aqui o segundo procedimento
+          ou serviço oferecido pela clínica.
+        </p>
+
+        <a href="#contato">
+          Saiba mais ↗
+        </a>
+
+      </article>
+
+
+      <article class="service">
+
+        <div class="num">
+          03
+        </div>
+
+        <h3>
+          Atendimento 03
+        </h3>
+
+        <p>
+          Descreva aqui o terceiro procedimento
+          ou serviço oferecido pela clínica.
+        </p>
+
+        <a href="#contato">
+          Saiba mais ↗
+        </a>
+
+      </article>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section class="band">
+
+  <div class="wrap band-grid">
+
+    <div>
+
+      <div class="eyebrow">
+        Vamos conversar?
+      </div>
+
+      <h2>
+        O primeiro passo é tirar suas dúvidas.
+      </h2>
+
+      <p>
+        Fale com a equipe para conhecer os atendimentos,
+        verificar horários e entender qual é o próximo
+        passo para o seu caso.
+      </p>
+
+    </div>
+
+    <a class="btn" href="#contato">
+      Chamar no WhatsApp ↗
+    </a>
+
+  </div>
+
+</section>
+
+
+<section id="experiencia">
+
+  <div class="wrap">
+
+    <div class="section-head">
+
+      <div class="eyebrow">
+        Simples e acolhedor
+      </div>
+
+      <h2>
+        Como funciona o agendamento
+      </h2>
+
+      <p>
+        Uma jornada clara ajuda cada pessoa
+        a saber o que esperar.
+      </p>
+
+    </div>
+
+
+    <div class="steps">
+
+      <div class="step">
+
+        <span>
+          PASSO 01
+        </span>
+
+        <h3>
+          Entre em contato
+        </h3>
+
+        <p>
+          Envie uma mensagem para a clínica
+          e conte qual informação você procura.
+        </p>
+
+      </div>
+
+
+      <div class="step">
+
+        <span>
+          PASSO 02
+        </span>
+
+        <h3>
+          Tire suas dúvidas
+        </h3>
+
+        <p>
+          A equipe explica os serviços disponíveis
+          e orienta sobre os próximos passos.
+        </p>
+
+      </div>
+
+
+      <div class="step">
+
+        <span>
+          PASSO 03
+        </span>
+
+        <h3>
+          Agende seu horário
+        </h3>
+
+        <p>
+          Consulte os horários disponíveis e
+          confirme seu agendamento diretamente
+          com a clínica.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section id="contato" style="background:#fffdf9">
+
+  <div class="wrap contact-grid">
+
+    <div>
+
+      <div class="eyebrow">
+        Contato
+      </div>
+
+      <h2 style="font-size:clamp(2.2rem,4vw,3.4rem);margin:12px 0 18px">
+        Vamos encontrar o melhor horário para você?
+      </h2>
+
+      <p style="color:var(--muted)">
+        Fale com a Clínica Jéssica Arcanjo para
+        consultar os serviços e combinar seu atendimento.
+      </p>
+
+      <!--
+      TROQUE O LINK ABAIXO PELO WHATSAPP DA JÉSSICA.
+      
+      Exemplo:
+      https://wa.me/5511999999999
+      -->
+
+      <a
+        class="btn"
+        href="https://wa.me/"
+        target="_blank"
+      >
+        Conversar pelo WhatsApp ↗
+      </a>
+
+    </div>
+
+
+    <div class="contact-panel">
+
+      <h3>
+        Clínica Jéssica Arcanjo
+      </h3>
+
+      <div class="contact-item">
+
+        <small>
+          WhatsApp
+        </small>
+
+        <strong>
+          Adicionar número de contato
+        </strong>
+
+      </div>
+
+
+      <div class="contact-item">
+
+        <small>
+          Endereço
+        </small>
+
+        <strong>
+          Adicionar endereço da clínica
+        </strong>
+
+      </div>
+
+
+      <div class="contact-item">
+
+        <small>
+          Horários
+        </small>
+
+        <strong>
+          Consultar disponibilidade
+        </strong>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+  <div class="wrap footer-row">
+
+    <span>
+      © 2026 Clínica Jéssica Arcanjo
+    </span>
+
+    <span>
+      Atendimento mediante agendamento.
+    </span>
+
+  </div>
+
+</footer>
+
+
+<a
+  class="wa-float"
+  href="https://wa.me/"
+  target="_blank"
+>
+  WhatsApp ↗
+</a>
+
+</body>
+</html>
